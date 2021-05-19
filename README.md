@@ -5,6 +5,17 @@ The Rust examples are in folders. Just `cd` into the folder and `cargo run` to t
 
 **Be sure to thoroughly read the comments in the source code.** I explain a lot of stuff there.
 
+### Rust
+
+- `rust_vecs/`
+	- Creating, passing, returning, iterating, and slicing `Vec`s.
+- `rust_structs/`
+	- How Rust `struct`s and `impl` work.
+- `rust_enums/`
+	- An example of `enum`s and `struct`s, and it also shows `match`.
+
+### Lexing
+
 - `StringWeirdness.java`
 	- Two similar-looking strings, but they have different properties.
 	- The strings are *not* the same:
