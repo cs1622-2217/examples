@@ -17,6 +17,15 @@ fn main() {
 	// BIGGER...
 	let d = AstNode::mul(c, AstNode::num(-40.));
 	show(&d);
+
+	// showing how the reciprocal method works.
+	let original = AstNode::add(AstNode::num(3.), AstNode::num(5.));
+	let r = original.recip();
+	println!("the reciprocal of {} is {}", original, r);
+
+	let original = AstNode::div(AstNode::num(3.), AstNode::num(5.));
+	let r = original.recip();
+	println!("the reciprocal of {} is {}", original, r);
 }
 
 // We take &Box and not just Box here because we just want to borrow

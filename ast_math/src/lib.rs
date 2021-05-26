@@ -4,7 +4,7 @@ use std::fmt::{ Display, Formatter, Result as FmtResult };
 // Our little AST type
 // ------------------------------------------------------------------------------------------------
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum AstNode {
 	Const  { val: f64 },
 	Negate { lhs: Box<AstNode> },
@@ -72,14 +72,32 @@ impl AstNode {
 			Binary { op, lhs, rhs } => op.eval(lhs.eval(), rhs.eval()),
 		}
 	}
-}
 
+	pub fn recip(&self) -> Box<AstNode> {
+		use AstNode::*;
+
+		match self {
+			// special case for division
+			Binary { op: BinOp::Div, lhs, rhs } => {
+				// by doing #[derive(Clone)] on AstNode, we get the .clone() method.
+				// .clone() makes a new copy of the given value; it is also recursive.
+				// so this will clone the entire subtrees giving us new identical-looking ones.
+				AstNode::div(rhs.clone(), lhs.clone())
+			}
+
+			_ => {
+				// for anything else, we create 1 / input
+				AstNode::div(AstNode::num(1.), Box::new(self.clone()))
+			}
+		}
+	}
+}
 
 // ------------------------------------------------------------------------------------------------
 // The kinds of binary (two-operand) operators
 // ------------------------------------------------------------------------------------------------
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum BinOp {
 	Add, Sub, Mul, Div
 }
