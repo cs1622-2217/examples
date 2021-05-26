@@ -13,6 +13,8 @@ The Rust examples are in folders. Just `cd` into the folder and `cargo run` to t
 	- How Rust `struct`s and `impl` work.
 - `rust_enums/`
 	- An example of `enum`s and `struct`s, and it also shows `match`.
+- `rust_trees/`
+	- `Option<Box<...>>` makes it possible to make tree data structures.
 
 ### Lexing
 
@@ -24,3 +26,8 @@ The Rust examples are in folders. Just `cd` into the folder and `cargo run` to t
 - `lexing_toy/`
 	- A very simple lexer for a language composed of just parentheses, identifiers, and base-10 int literals.
 	- `cargo run` gives you an interactive prompt to type code, and it shows the tokens for that code.
+
+### ASTs/Parsing
+
+- `ast_math/`
+	- Demonstrates a simple mathematical AST that can be displayed and even evaluated.
